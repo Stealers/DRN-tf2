@@ -9,7 +9,7 @@
 
 ## results
 
-This model is train on DIV2K_train_HR(800 image) with 300 epochs(per epoch 50 iterations) , and not use dual regression. This code supports dual regression(maybe, I haven't tried it yet). You can try to use more data and train more epochs. I think it will perform better.
+This model is train on DIV2K_train_HR(800 images) with 300 epochs(per epoch 50 iterations) , and not use dual regression. This code supports dual regression(maybe, I haven't tried it yet). You can try to use more data and train more epochs. I think it will perform better.
 
 |                        | Set5 paper(matlab) | Set5 this(tensorflow) |
 | ---------------------- | :----------------: | :-------------------: |
@@ -18,7 +18,7 @@ This model is train on DIV2K_train_HR(800 image) with 300 epochs(per epoch 50 it
 | **DRN-S_x4**           |     32.53 / -      |     27.91 / 0.854     |
 | **DRN-S_x4**(Dual reg) |   32.68 / 0.901    |         - / -         |
 
-**use tf.image.psnr/tf.image.ssim to calculate PSNR/SSIM if different from matlab(paper). It seems that there is always a gap between the results calculated by Python and MATLAB.**  
+**use tf.image.psnr/tf.image.ssim to calculate PSNR/SSIM is different from matlab(paper). It seems that there is always a gap between the results calculated by Python and MATLAB.**  
 
 <p align="center">
 <img src="img_md/img1_merge.png" alt="img1_merge" align=center />
