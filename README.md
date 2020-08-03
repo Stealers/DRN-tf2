@@ -14,7 +14,7 @@ This model is train on DIV2K_train_HR(800 image) with 300 epochs(per epoch 50 it
 | **DRN-S_x4**           |     32.53 / -      |     27.91 / 0.854     |
 | **DRN-S_x4**(Dual reg) |   32.68 / 0.901    |         - / -         |
 
-**use tf.image.psnr/tf.image.ssim to calculate PSNR/SSIM if different from matlab(paper). It seems that there is always a gap between the results calculated by Python and MATLAB.**
+**use tf.image.psnr/tf.image.ssim to calculate PSNR/SSIM if different from matlab(paper). It seems that there is always a gap between the results calculated by Python and MATLAB.**  
 ![img2](https://github.com/Stealers/DRN-tf2/blob/master/img_md/img1_merge.png)  
 ## train  
 **Refer to train.ipynb for training**  
