@@ -1,6 +1,5 @@
 ## Closed-loop Matters: Dual Regression Networks for Single Image Super-Resolution  
 ![](./img_md/DRN.png)
-
 &emsp; Paper: [link](https://arxiv.org/pdf/2003.07018.pdf )  
 &emsp; Official Implementation (pytorch): [link](https://github.com/guoyongcs/DRN)  
 
@@ -15,9 +14,9 @@ This model is train on DIV2K_train_HR(800 image) with 300 epochs(per epoch 50 it
 | **DRN-S_x4**           |     32.53 / -      |     27.91 / 0.854     |
 | **DRN-S_x4**(Dual reg) |   32.68 / 0.901    |         - / -         |
 
-**use tf.image.psnr/tf.image.ssim to calculate PSNR/SSIM if different from matlab(paper). It seems that there is always a gap between the results calculated by Python and MATLAB. **
+**use tf.image.psnr/tf.image.ssim to calculate PSNR/SSIM if different from matlab(paper). It seems that there is always a gap between the results calculated by Python and MATLAB.**
 ![](./img_md/img1_merge.png)
-## train
+## train  
 **Refer to train.ipynb for training**  
 ```python
 def DRN(input_shape=(64,64,3),model='DRN-S',scale=4,nColor=3,training=True,dual=True):
@@ -30,7 +29,7 @@ def DRN(input_shape=(64,64,3),model='DRN-S',scale=4,nColor=3,training=True,dual=
     dual: Dual regression, support True and False
     """ 
 ```
-##inference
+## inference
 **Refer to inference.ipynb for inference**
 
 ```python
