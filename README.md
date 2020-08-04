@@ -14,8 +14,8 @@ This model is train on DIV2K_train_HR(800 images) with 300 epochs(per epoch 50 i
 |                        | Set5 paper         | Set5 this             |
 | ---------------------- | :----------------: | :-------------------: |
 | **Algorithms**         |  **PSNR / SSIM**   |    **PSNR / SSIM**    |
-| **DRN-S_x4**           |   32.53 / -        |     31.61 / 0.889     |
-| **DRN-S_x4**(Dual reg) |   32.68 / 0.901    |     31.67 / 0.889     |
+| **DRN-S_x4**           |   32.53 / -        |     31.90 / 0.891     |
+| **DRN-S_x4**(Dual reg) |   32.68 / 0.901    |     31.93 / 0.891     |
 
 <p align="center">
 <img src="img_md/img1_merge.png" alt="img1_merge" align=center />
@@ -41,10 +41,8 @@ def DRN(input_shape=(64,64,3),model='DRN-S',scale=4,nColor=3,training=True,dual=
 from inference import Inference
 
 # init model
-weights_path = 'pretrain_models/model.h5'
-input_size = 64
-scale = 4
-infernce = Inference(weights_path, input_size, scale)
+weights_path = 'pretrain_models/model_dual.h5'
+infernce = Inference(weights_path)
 ```
 
 ```python
