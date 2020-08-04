@@ -10,7 +10,7 @@ class UpSample2D(Layer):
         self.method = method
         self.antialias = antialias
     def call(self, inputs):
-        output_size = [inputs.shape[1] * self.scale, inputs.shape[2] * self.scale]
+        output_size = [tf.shape(inputs)[1] * self.scale, tf.shape(inputs)[2] * self.scale]
         x = tf.image.resize(inputs, output_size, method=self.method, antialias=self.antialias)
         return x
     
@@ -130,11 +130,12 @@ def DRN(input_shape=(128,128,3),model='DRN-S',scale=4,nColor=3,training=True,dua
         x = Concatenate(name='Concat'+str(up_step))([shortcut[steps-up_step-1], x])
         result_nfeat.append(x)
     
+    x = tail(result_nfeat[-1], nColor, name='tail')
+    x = MeanShift(sign=1, name='Mean_Add')(x)
+    SR_out = x
+    outputs.append(SR_out)
     if training:
         if dual:
-            x = tail(result_nfeat[-1], nColor, name='tail')
-            x = MeanShift(sign=1, name='Mean_Add')(x)
-            SR_out = x
             for step in range(steps):
                 x = Conv2D(16,(3,3),(2,2),use_bias=False,padding='same',name='dual/Conv1'+str(step))(x)
                 x = LeakyReLU(alpha=0.2, name='dual/LeakyReLU'+str(step))(x)
@@ -144,20 +145,9 @@ def DRN(input_shape=(128,128,3),model='DRN-S',scale=4,nColor=3,training=True,dua
                 y = tail(result_nfeat[-step-2], nColor, name='tail'+str(step))
                 y = MeanShift(sign=1, name='Mean_Add'+str(step))(y)
                 lr_image.append(y)
-                
-            outputs.append(SR_out)
             for step in range(steps):
-                outputs.append(tf.concat([lr_image[step],sr2lr_image[step]],axis=-1))
-            model = Model(inputs, outputs)
-        else:
-            x = tail(result_nfeat[-1], nColor, name='tail')
-            x = MeanShift(sign=1, name='Mean_Add')(x)
-            SR_out = x
-            model = Model(inputs, SR_out)
+                outputs.append(Concatenate(name='lr_concat'+str(step))([lr_image[step],sr2lr_image[step]]))
+        model = Model(inputs, outputs)
         return model
-    
-    x = tail(result_nfeat[-1], nColor, name='tail')
-    x = MeanShift(sign=1, name='Mean_Add')(x)
-    SR_out = x
-    model = Model(inputs, SR_out)
+    model = Model(inputs, outputs)
     return model
