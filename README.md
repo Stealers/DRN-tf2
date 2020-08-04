@@ -9,14 +9,14 @@
 
 ## results
 
-This model is train on DIV2K_train_HR(800 images) with 300 epochs(per epoch 50 iterations) , and not use dual regression. This code supports dual regression(maybe, I haven't tried it yet). You can try to use more data and train more epochs. I think it will perform better.
+This model is train on DIV2K_train_HR(800 images) with 300 epochs(per epoch 50 iterations) , and not use dual regression. This code supports dual regression. You can try to use more data and train more epochs. I think it will perform better.
 
 |                        | Set5 paper(matlab) | Set5 this(tensorflow) |
 | ---------------------- | :----------------: | :-------------------: |
 | **Algorithms**         |  **PSNR / SSIM**   |    **PSNR / SSIM**    |
 | **Bicubic_x4**         |   28.42 / 0.810    |     26.69 / 0.773     |
-| **DRN-S_x4**           |     32.53 / -      |     27.91 / 0.854     |
-| **DRN-S_x4**(Dual reg) |   32.68 / 0.901    |         - / -         |
+| **DRN-S_x4**           |   32.53 / -        |     27.91 / 0.854     |
+| **DRN-S_x4**(Dual reg) |   32.68 / 0.901    |     28.09 / 0.855     |
 
 **use tf.image.psnr/tf.image.ssim to calculate PSNR/SSIM is different from matlab(paper). It seems that there is always a gap between the results calculated by Python and MATLAB.**  
 
