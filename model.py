@@ -24,12 +24,11 @@ class MeanShift(Layer):
         return tf.math.add(inputs, self.mean)
     
 class SubPixel2D(Layer):
-    def __init__(self, scale, **kwargs):
+    def __init__(self, **kwargs):
         super(SubPixel2D, self).__init__(**kwargs)
-        self.scale = scale
         
     def call(self, inputs):
-        x = tf.nn.depth_to_space(inputs, block_size=self.scale)
+        x = tf.nn.depth_to_space(inputs, block_size=2)
         return x
     
 def head(inputs, nFeats, name):
@@ -47,7 +46,7 @@ def downblock(inputs, nFeat, name):
 def upblock(inputs, nFeat1, nFeat2, scale, name):
     x = Conv2D(nFeat1*scale**2,(3,3),(1,1),padding='same',name=name+'/Conv1')(inputs)
     x = Activation('relu', name=name+'/relu')(x)
-    x = SubPixel2D(scale=2, name=name+'/SubPixel2D')(x)
+    x = SubPixel2D(name=name+'/SubPixel2D')(x)
     x = Conv2D(nFeat2,(1,1),(1,1),padding='same',name=name+'/Conv2')(x)
     return x
 
