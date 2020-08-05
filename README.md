@@ -9,12 +9,12 @@
 
 ## results
 
-This model is train on DIV2K_train_HR(800 images) with 300 epochs(per epoch 50 iterations) , and not use dual regression. This code supports dual regression. You can try to use more data and train more epochs. I think it will perform better.
+This model is train on DIV2K_train_HR(800 images) with 300 epochs(per epoch 50 iterations). You can try to use more data and train more epochs. I think it will perform better.
 
 |                        | Set5 paper         | Set5 this             |
 | ---------------------- | :----------------: | :-------------------: |
 | **Algorithms**         |  **PSNR / SSIM**   |    **PSNR / SSIM**    |
-| **DRN-S_x4**           |   32.53 / -        |     31.90 / 0.891     |
+| **DRN-S_x4**           |   32.53 / -        |         - / -         |
 | **DRN-S_x4**(Dual reg) |   32.68 / 0.901    |     31.93 / 0.891     |
 
 <p align="center">
