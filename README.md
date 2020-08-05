@@ -22,7 +22,7 @@ This model is train on DIV2K_train_HR(800 images) with 300 epochs(per epoch 50 i
 </p>  
 
 ## train  
-**Refer to train.ipynb for training**  
+**Refer to [train.ipynb](https://github.com/Stealers/DRN-tf2/blob/master/train.ipynb) for training**  
 ```python
 def DRN(input_shape=(64,64,3),model='DRN-S',scale=4,nColor=3,training=True,dual=True):
     """
@@ -35,14 +35,14 @@ def DRN(input_shape=(64,64,3),model='DRN-S',scale=4,nColor=3,training=True,dual=
     """ 
 ```
 ## inference
-**Refer to inference.ipynb for inference**
+**Refer to [inference.ipynb](https://github.com/Stealers/DRN-tf2/blob/master/inference.ipynb) for inference**
 
 ```python
 from inference import Inference
 
 # init model
 weights_path = 'pretrain_models/model_dual.h5'
-infernce = Inference(weights_path)
+inference = Inference(weights_path)
 ```
 
 ```python
@@ -50,5 +50,5 @@ infernce = Inference(weights_path)
 name = 'img_test/img1_'
 lr_path = name+'LR'+'.png'
 sr_path = name+'SR'+'.png'
-infernce(lr_path, sr_path)
+inference(lr_path, sr_path)
 ```
