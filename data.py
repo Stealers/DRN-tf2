@@ -63,9 +63,9 @@ def flip_y(lr_image, hr_image):
     return lr_image, hr_image
 
 def data_augment(lr_image, hr_image):
-    lr_image, hr_image = tf.cond(tf.random.uniform([1]) < .5, lambda: rot90(lr_image, hr_image), lambda: (lr_image, hr_image))
-    lr_image, hr_image = tf.cond(tf.random.uniform([1]) < .5, lambda: flip_x(lr_image, hr_image), lambda: (lr_image, hr_image))
-    lr_image, hr_image = tf.cond(tf.random.uniform([1]) < .5, lambda: flip_y(lr_image, hr_image), lambda: (lr_image, hr_image))
+    lr_image, hr_image = tf.cond(tf.random.uniform([1],seed=111) < .5, lambda: rot90(lr_image, hr_image), lambda: (lr_image, hr_image))
+    lr_image, hr_image = tf.cond(tf.random.uniform([1],seed=222) < .5, lambda: flip_x(lr_image, hr_image), lambda: (lr_image, hr_image))
+    lr_image, hr_image = tf.cond(tf.random.uniform([1],seed=333) < .5, lambda: flip_y(lr_image, hr_image), lambda: (lr_image, hr_image))
     return lr_image, hr_image
 
 def data_normalize(lr_image, hr_image):
