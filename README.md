@@ -38,11 +38,9 @@ def DRN(input_shape=(64,64,3),model='DRN-S',scale=4,nColor=3,training=True,dual=
 **Refer to [inference.ipynb](https://github.com/Stealers/DRN-tf2/blob/master/inference.ipynb) for inference**
 
 ```python
-from inference import Inference
-
-# init model
 weights_path = 'pretrain_models/model_dual.h5'
-inference = Inference(weights_path)
+scale = 4
+inference = Inference(weights_path, scale)
 ```
 
 ```python
