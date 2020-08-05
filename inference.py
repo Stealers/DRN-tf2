@@ -8,8 +8,8 @@ def save_img(image,path):
     tf.io.write_file(path,image)
     return 'Done!'
 
-def Inference(weights_path):
-    sr_model = DRN(input_shape=(None,None,3),model='DRN-S',scale=4,nColor=3,training=False,dual=False)
+def Inference(weights_path, scale=4):
+    sr_model = DRN(input_shape=(None,None,3),model='DRN-S',scale=scale,nColor=3,training=False,dual=False)
     sr_model.load_weights(weights_path, by_name=True)
     def inference(lr_path, sr_path, sr_model=sr_model):
         image = tf.io.read_file(lr_path)
